@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'org.springframework.boot' version "${springBootVersion}"
+    id 'io.spring.dependency-management' version "${springDependencyManagementVersion}"
+}
+
+bootJar {
+    mainClassName = 'com.lpg.codechallenge.tourismpassmanagement.TourismPassManagementApplication'
+}
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    compile.exclude module: 'spring-boot-starter-logging'
+}
+
+dependencies {
+    // Lombok
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+
+    // MapStruct
+    compile group: 'org.mapstruct', name: 'mapstruct-jdk8', version: mapstructVersion
+    compileOnly group: 'org.mapstruct', name: 'mapstruct-processor', version: mapstructVersion
+    annotationProcessor group: 'org.mapstruct', name: 'mapstruct-processor', version: mapstructVersion
+
+    compile(
+        // Spring Framework
+        compile("org.springframework.boot:spring-boot-starter-web") {
+            exclude module: "spring-boot-starter-tomcat"
+        },
+        [group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'],
+        [group: 'org.springframework.boot', name: 'spring-boot-starter-jetty'],
+        [group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa'],
+        [group: 'org.springframework.boot', name: 'spring-boot-starter-log4j2'],
+
+        // Java Persistence API
+        [group: 'org.hibernate', name: 'hibernate-core'],
+        [group: 'org.postgresql', name: 'postgresql'],
+
+        // Apache Commons
+        [group: 'org.apache.commons', name: 'commons-lang3', version: apacheCommonsLang3Version],
+
+        // Swagger
+        [group: 'io.springfox', name: 'springfox-swagger2', version: swaggerVersion],
+        [group: 'io.springfox', name: 'springfox-swagger-ui', version: swaggerVersion],
+        [group: 'io.swagger', name: 'swagger-models', version: swaggerDependenciesVersion],
+        [group: 'io.swagger', name: 'swagger-annotations', version: swaggerDependenciesVersion]
+    )
+}

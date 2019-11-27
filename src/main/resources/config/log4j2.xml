@@ -1,0 +1,30 @@
+<Configuration name="LPG_TourismPassManagementSystem" monitorInterval="15">
+	<Properties>
+		<Property name="logs_directory">/opt/lpg/code_challenge/tourism_pass_management_system/logs</Property>
+	</Properties>
+	<Appenders>
+		<RollingRandomAccessFile name="File" fileName="${logs_directory}/tourism_pass_management_system.log" filePattern="${logs_directory}/archive/tourism_pass_management_system-%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout pattern="%X{X-Request-ID} %d %p %c{1.} [%t] %m%n"/>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+			<DefaultRolloverStrategy>
+				<Delete basePath="${logs_directory}/archive/" maxDepth="2">
+					<IfFileName regex="tourism_pass_management_system-[^a-z]*.log.gz" />
+					<IfLastModified age="10d" />
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingRandomAccessFile>
+		<Console name="Console" target="SYSTEM_OUT" >
+			<PatternLayout pattern="%X{X-Request-ID} %d %p %c{1.} [%t] %m%n"/>
+		</Console>
+	</Appenders>
+	<Loggers>
+		<Root level="info">
+			<AppenderRef ref="Console"/>
+		</Root>
+		<Logger name="com.lpg.codechallenge.tourismpassmanagement" level="debug">
+			<appender-ref ref="File"/>
+		</Logger>
+	</Loggers>
+</Configuration>

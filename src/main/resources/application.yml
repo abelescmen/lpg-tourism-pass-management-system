@@ -1,0 +1,63 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /lpg/tourism-pass-management-system
+  jetty:
+    accesslog:
+      filename: /opt/lpg/tourism_pass_management_system/logs/access-yyyy_mm_dd.log
+
+spring:
+  aop:
+    auto: false
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+  jpa:
+    hibernate:
+      jdbc:
+        lob:
+          non_contextual_creation: false
+      ddl-auto: update
+      showSql: false
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://postgresql:5432/tourism_pass_mgmt
+    username: postgres
+    password: postgres
+    driverClassName: org.postgresql.Driver
+    hikari:
+      connection-timeout: 15000
+      maximum-pool-size: 10
+      register-mbeans: true
+
+logging:
+  config: /opt/lpg/tourism_pass_management_system/config/log4j2.xml
+  level:
+    app.messages.AuditingFilter: DEBUG
+    org.hibernate: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql: TRACE
+    org.springframework.web: DEBUG
+
+debug: true
+
+springfox:
+  documentation:
+    auto-startup: true
+swagger:
+  title: LPG - Tourism Pass Management System
+  description: This code challenge is a Tourism Pass Management System.
+  version: 1.0
+  termsOfServiceUrl: Use of this API by persons who are not employed by Leasure Pass Group is expressly forbidden.
+  license: This is proprietary software of Leasure Pass Group company.
+  licenseUrl: https://www.leisurepassgroup.com/legal
+  contact:
+    name: Leasure Pass Group
+    email: press@leisurepassgroup.com
+    url: https://www.leisurepassgroup.com
