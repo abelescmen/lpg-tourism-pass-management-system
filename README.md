@@ -3,6 +3,7 @@ Tourism Pass Management System is a microservice with a set of simple and intern
 
 ### Technologies
 The technologies used to build this microservice are listed below:
+* Gradle
 * Spring Boot
 * Java 1.8
 * [Project Lombok](https://projectlombok.org)
@@ -14,7 +15,6 @@ The technologies used to build this microservice are listed below:
 
 ### Prerequisites
 In order to be able to run the microservice, it is required to have the below technologies installed:
-- [ ] Java 1.8 [[https://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html](https://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html)]
 - [ ] Docker [[https://docs.docker.com/install](https://docs.docker.com/install)]
 - [ ] Docker Compose [[https://docs.docker.com/compose/install](https://docs.docker.com/compose/install)]
 
